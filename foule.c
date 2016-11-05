@@ -104,24 +104,24 @@ int x,y;
 
 int deplacement_joueur()
 {
-        if (tableau[b.x+1] == 0) 
+        if (plateau[b.x+1] == 0) 
         {
                 //la place a droite est libre 
                 b.x +=1;
                 return true;
         }
-        else if (tableau[b.y+1] == 0) 
+        else if (plateau[b.y+1] == 0) 
         {
                 //la place desuus est libre
                 b.y +=1;
                 return true;
         }
-        else if (tableau[b.y-1] == 0)
+        else if (plateau[b.y-1] == 0)
         {
         	b.y-=1;
         	return true ;
         }
-        else if (tableau[b.x-1] == 0)
+        else if (plateau[b.x-1] == 0)
         {
         	b.x-=1;
         	return true;
