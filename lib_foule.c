@@ -56,14 +56,9 @@ void charge_plan(char *fplan, int tab[TAB_X][TAB_Y])
 /******************************************************************************/
 /* CHARGE JOUEUR                                                                */
 /******************************************************************************/
-
 void charge_joueur(char *fjoueurs, int tab[TAB_x][TAB_y]) // [TAB_x] c'est la ligne pour le personnage (de 1 à 50) et [TAB_y] contient les 4 coordonnées .
 {
-	int i=0;
-	int xDepart[i];
-	int yDepart[i];
-	int xArrivee[i];
-	int yArrivee[i];
+	int i=0; int x,y;
 	
 	
 	FILE *f = fopen(fjoueurs,"r");
@@ -71,16 +66,16 @@ void charge_joueur(char *fjoueurs, int tab[TAB_x][TAB_y]) // [TAB_x] c'est la li
 	if (f != NULL)
 	{
 		
-		while (EOF != fscanf(f, "%d %d %d %d", &xDepart[i], &yDepart[i], &xArrivee[i], &yArrivee[i]))
+		while (EOF != fscanf(f, "%d %d %d %d", &tab[i][0], &tab[i][1], &tab[i][2], &tab[i][3]))
 		//EOF => End Of File 
 		{
-			for (i=1; i < sizeof(xDepart); i++)
+			for (i=1; i < sizeof(tab[i][0]); i++)
 			{
 			//on parcours les colonnes pour avoir un tableau ou l'on puisse stocker les 4 coordonnées
-				tab[i][0] = xDepart[i];
+				/*tab[i][0] = xDepart[i];
 				tab[i][1] = yDepart[i];
 				tab[i][2] = xArrivee[i];
-				tab[i][3] = yArrivee[i];
+				tab[i][3] = yArrivee[i];*/
 			}
 		
 		}
@@ -91,7 +86,6 @@ void charge_joueur(char *fjoueurs, int tab[TAB_x][TAB_y]) // [TAB_x] c'est la li
 	{
 		printf("Impossible d'ouvrir le fichier");
 	}
-// pour l'instant ça marche 	
-	
 
 }
+
