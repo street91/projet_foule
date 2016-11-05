@@ -17,7 +17,7 @@
 int plateau[NB_CASES_X][NB_CASES_Y]={{0}};  
 int tab[TAB_x][TAB_y];
 
-char false, true ;
+int x,y;int en_cours;
 typedef struct Bonhomme 
 {
     int x;
@@ -30,7 +30,7 @@ Bonhomme b = {5 , 10} ;
 /* Déclaration de vos fonctions                                               */
 /******************************************************************************/
 void afficher_plan();
-int deplacement_joueur();
+void deplacement_joueur();
 
 /******************************************************************************/
 /* main                                                                       */
@@ -48,9 +48,10 @@ int main(void)
         int tour ;
         for(tour=0;tour<100;tour++)
         {
-                if (deplacement_joueur() == false)
+                if (en_cours == 0)
                 {
-                        //afficher erreur ou deplacement impossible
+                    printf ("impossible\n");    
+                    //afficher erreur ou deplacement impossible
                         break; //on arrete la boucle voir le prog mais normalement cas impossible sauf si le tableau est modifié en meme temps que le deplaceme,t du joueur
                 }
                 afficher_plan();
@@ -102,37 +103,54 @@ int x,y;
         
 }
 
-int deplacement_joueur()
+void deplacement_joueur()
 {
-        if (plateau[b.x+1] == 0) 
+       
+       for (x=0 ; x!=80 ; x++)
+        {
+                for ( y=0 ; y!=60 ; y++ )
+                {
+       
+       
+       
+       
+       
+        if (plateau[x+1][y] == 0) 
         {
                 //la place a droite est libre 
                 b.x +=1;
-                return true;
+                en_cours=1;
+                
         }
-        else if (plateau[b.y+1] == 0) 
+        else if (plateau[x][y+1] == 0) 
         {
                 //la place desuus est libre
                 b.y +=1;
-                return true;
+                en_cours=1;
+                
         }
-        else if (plateau[b.y-1] == 0)
+        else if (plateau[x][y-1] == 0)
         {
         	b.y-=1;
-        	return true ;
+        	en_cours=1 ;
+        	
         }
-        else if (plateau[b.x-1] == 0)
+        else if (plateau[x-1][y] == 0)
         {
         	b.x-=1;
-        	return true;
+        	en_cours=1;
+        	
         }
-        
-
-        //le p^robleme de ca est que il est pas intelligetn dans son depaclement  il regarde si les cases sont libres dans un ordre precis. Rajouter de l'aletoire pour choisir le mvt est pas interressa,t non plus car ca sera pas plus intelligent
-
-        //aucun deplacelemnt posssible ?
-        return false;
+                   
+        else 
+        {
+        	en_cours=0;
                 b.x +=2 ;
                 b.y +=1;
+        } 
+               }
+        }
         actualiser();
 }
+        
+
